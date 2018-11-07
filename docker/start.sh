@@ -12,6 +12,7 @@ if [ "$env" != "local" ]; then
     echo "Caching configuration..."
     php artisan config:cache
     php artisan view:cache
+    php artisan route:cache
 fi
 
 if [ "$role" = "app" ]; then
