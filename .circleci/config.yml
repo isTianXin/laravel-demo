@@ -31,7 +31,7 @@ jobs: # a collection of steps
           paths:
             - node_modules
       - run: touch database/database.sqlite
-      - run: php artisan migrate
+      - run: php artisan migrate --force
       - run:
           command: |
             ./lint.sh
