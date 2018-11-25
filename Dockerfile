@@ -44,7 +44,7 @@ RUN chown www-data:www-data bootstrap/cache \
 
 RUN rm /etc/apache2/sites-enabled/*
 COPY config/apache2 /etc/apache2/
-a2ensite laravel
+RUN a2ensite laravel
 
 COPY docker/start.sh /usr/local/bin/start
 RUN chmod +x /usr/local/bin/start
