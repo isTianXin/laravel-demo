@@ -55,6 +55,9 @@ COPY config/apache2 /etc/apache2/
 RUN sed -i 's/\/var\/www\/.*\/public/\/var\/www\/laravel\/public/g' /etc/apache2/sites-available/laravel.conf
 RUN a2ensite laravel
 
+COPY crontab /var/spool/cron/crontabs/root
+RUN chmod 0644 /var/spool/cron/crontabs/root
+
 COPY . /var/www/laravel/
 RUN chown www-data:www-data bootstrap/cache \
     && chown -R www-data:www-data storage/

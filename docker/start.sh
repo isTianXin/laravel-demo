@@ -12,10 +12,16 @@ if [ "$env" != "local" ]; then
     echo "Caching configuration..."
     php artisan config:cache
     php artisan view:cache
-    php artisan route:cache
 fi
 
-if [ "$role" = "app" ]; then
+if [[ "$role" =~ "scheduler" ]]; then
+    echo "start cron"
+    crontab /var/spool/cron/crontabs/root
+    /etc/init.d/cron start
+    /etc/init.d/cron status
+fi
+
+if [[ "$role" =~ "app" ]]; then
 
     exec apache2-foreground
 
@@ -23,14 +29,6 @@ elif [ "$role" = "queue" ]; then
 
     echo "Running the queue..."
     php artisan queue:work --verbose --tries=3 --timeout=90
-
-elif [ "$role" = "scheduler" ]; then
-
-    while [ true ]
-    do
-      php artisan schedule:run --verbose --no-interaction &
-      sleep 60
-    done
 
 else
     echo "Could not match the container role \"$role\""
