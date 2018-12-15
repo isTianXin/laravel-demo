@@ -47,8 +47,6 @@ RUN composer install --optimize-autoloader --no-dev
 
 RUN rm -f public/storage \
     && php artisan storage:link
-RUN php artisan vendor:publish --tag dummy_content
-RUN php artisan vendor:publish --tag voyager_assets
 
 RUN rm /etc/apache2/sites-enabled/*
 COPY config/apache2 /etc/apache2/
