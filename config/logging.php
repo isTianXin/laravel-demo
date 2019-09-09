@@ -35,7 +35,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => preg_split('/,/', env('LOG_STACK_CHANNELS', 'single,stderr'), null, PREG_SPLIT_NO_EMPTY),
         ],
 
         'single' => [

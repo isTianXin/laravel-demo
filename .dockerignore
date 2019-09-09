@@ -1,0 +1,10 @@
+bootstrap/cache/*
+Dockerfile
+.dockerignore
+.git
+node_modules/
+storage/app/public/
+storage/framework/*/*
+storage/logs/
+tests/
+vendor/
